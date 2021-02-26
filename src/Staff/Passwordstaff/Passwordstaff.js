@@ -1,16 +1,81 @@
 import React, { Component } from 'react'
 import { Text, View, Image, TextInput, ToastAndroid, TouchableOpacity, ScrollView } from 'react-native'
 import { styles } from './Stylepasswordstaff'
+import AsyncStorage from '@react-native-community/async-storage';
+import {connect} from 'react-redux';
 
-export default class Passswordstaff extends Component {
+class Passswordstaff extends Component {
     constructor(){
         super();
         this.state = {
             password: true,
             password2:true,
-            password3:true
+            password3:true,
+            password_old:'',
+            password_new:'',
+            password_new_confirmation:'',
+            method:'patch'
         }
     }
+    componentDidMount() {
+        AsyncStorage.getItem('token')
+          .then((value) => {
+            console.log('ini Value', value);
+            if (value !== null) {
+              this.setState({token: value, refresh: false});
+                
+            } else {
+                this.props.navigation.navigate('Login');
+            }
+          })
+          .catch((err) => console.log(err));
+        console.log('ini TOKEN', this.props.userToken.userReducer.token);
+      }
+
+    ubahPassword = () => {
+        console.log('mulai Mengirim');
+    
+        const {password_new,password_old,password_new_confirmation,method} = this.state;
+        const formData = new FormData();
+    
+        formData.append('password_old', password_old);
+        formData.append('password_new', password_new);
+        formData.append('password_new_confirmation', password_new_confirmation);
+        formData.append('_method', method);
+
+
+    
+        this.setState({loading: true});
+        fetch('https://smartcash2.herokuapp.com/api/password/update', {
+          method: 'POST',
+          headers: {
+            // 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            Authorization: `Bearer ${this.props.userToken.userReducer.token}`,
+          },
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((response) => {
+            
+            console.log('ini response', response);
+            if (response.status == 'success') {
+              ToastAndroid.show('Berhasil Mengubah!', 1000);
+              this.props.navigation.navigate('Drawer1');
+              this.setState({loading: false});
+            }else if (response.message == 'please check your password'){
+              ToastAndroid.show('Password lama salah!',1000);
+            //   this.props.navigation.navigate('Drawer1')
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            this.setState({loading: false});
+            ToastAndroid.show('Silahkan cek ulang password baru!', 1000);
+          });
+      };
+              
+    
+    
     render() {
         return (
             <View style = {styles.container}>
@@ -24,7 +89,7 @@ export default class Passswordstaff extends Component {
                     </View>
                            
                     <View style = {styles.viewpassword}>
-                        <TextInput placeholder = {' Passwordbaru'} style = {styles.inputpassword} secureTextEntry = {this.state.password}/>
+                        <TextInput placeholder = {' Passwordlama'} style = {styles.inputpassword} secureTextEntry = {this.state.password} onChangeText = {(password_old)=>this.setState({password_old})}/>
                         <TouchableOpacity style = {styles.touchpassword} onPress = {()=>this.setState({password: !this.state.password})}>
                             <Image 
                                 source = {
@@ -38,7 +103,7 @@ export default class Passswordstaff extends Component {
                     </View>
 
                     <View style = {styles.viewpassword2}>
-                        <TextInput placeholder = {' Passwordlama'} style = {styles.inputpassword} secureTextEntry = {this.state.password2}/>
+                        <TextInput placeholder = {' passwordbaru'} style = {styles.inputpassword} secureTextEntry = {this.state.password2} onChangeText = {(password_new) => this.setState({password_new})}/>
                         <TouchableOpacity style = {styles.touchpassword} onPress = {()=>this.setState({password2: !this.state.password2})}>
                             <Image 
                                 source = {
@@ -52,7 +117,7 @@ export default class Passswordstaff extends Component {
                     </View>
 
                     <View style = {styles.viewpassword2}>
-                        <TextInput placeholder = {' Passwordlama'} style = {styles.inputpassword} secureTextEntry = {this.state.password3}/>
+                        <TextInput placeholder = {' confirmasipassword'} style = {styles.inputpassword} secureTextEntry = {this.state.password3} onChangeText = {(password_new_confirmation) => this.setState({password_new_confirmation})}/>
                         <TouchableOpacity style = {styles.touchpassword} onPress = {()=>this.setState({password3: !this.state.password3})}>
                             <Image 
                                 source = {
@@ -65,7 +130,7 @@ export default class Passswordstaff extends Component {
                         </TouchableOpacity>
                     </View>
 
-                    <TouchableOpacity style = {styles.touchubah}>
+                    <TouchableOpacity style = {styles.touchubah} onPress = {() => this.ubahPassword()}>
                         <Text style = {styles.txtubah}>Ubah</Text>
                     </TouchableOpacity>                     
                     
@@ -76,3 +141,9 @@ export default class Passswordstaff extends Component {
         )
     }
 }
+const mapStateToProps = (state) => {
+    return {
+      userToken: state,
+    };
+  };
+export default connect(mapStateToProps)(Passswordstaff);

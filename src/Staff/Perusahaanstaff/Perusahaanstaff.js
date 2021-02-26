@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ScrollView, TouchableOpacity, Image } from 'react-native'
+import { Text, View, ScrollView, TouchableOpacity, Image, ToastAndroid, Modal  } from 'react-native'
 import {styles} from './Styleperusahaanstaff.js'
 import AsyncStorage from '@react-native-community/async-storage';
 import {connect} from 'react-redux';
@@ -8,7 +8,8 @@ class Pengaturanstaff extends Component {
     constructor(){
         super();
         this.state = {
-            data: []
+            data: [],
+            method:'delete',
         }
     }
     componentDidMount() {
@@ -61,7 +62,44 @@ class Pengaturanstaff extends Component {
           });
       }
       
-      
+      hapusPerusahaan = (id) => {
+        console.log('mulai Mengirim');
+    
+        const {method} = this.state;
+        const formData = new FormData();
+    
+        formData.append('_method', method);
+        // formData.append('password', password2);
+    
+        this.setState({loading: true});
+        fetch(`https://smartcash2.herokuapp.com/api/supplier/delete/${id}`, {
+          method: 'POST',
+          headers: {
+            // 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            Authorization: `Bearer ${this.props.userToken.userReducer.token}`,
+          },
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((response) => {
+            // const {token, error} = response;
+    
+            // this.props.userLogin(token);
+    
+            console.log('ini response', response);
+            if (response.status == 'success') {
+              ToastAndroid.show('Berhasil Menghapus', 1000);
+              this.props.navigation.navigate('Drawer1')
+              this.setState({loading: false});
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            this.setState({loading: false});
+            ToastAndroid.show('Email Atau Password Salah', 1000);
+          });
+      };
+
     render() {
         return (
             <View style = {styles.container}>
@@ -100,18 +138,16 @@ class Pengaturanstaff extends Component {
                         </View>
 
                         <View style = {styles.viewtouch}>
-                            <TouchableOpacity style = {styles.touchhapus}>
+                            <TouchableOpacity style = {styles.touchhapus} onPress = {() => this.hapusPerusahaan(item.id)}>
                                 <Text style = {styles.txthapus}>Hapus</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.touchubah}>
+                            <TouchableOpacity style = {styles.touchubah} onPress = {() => this.props.navigation.navigate("Ubahperusahaanstaff",{item:item})}>
                                 <Text style = {styles.txtubah}>Ubah</Text>
                             </TouchableOpacity>
                         </View>
                     </View>     
                     )
                 })}
-                    
-
                     <View style = {{width:'100%',height:30}}></View>
                 </ScrollView>
             </View>
@@ -124,6 +160,9 @@ const mapStateToProps = (state) => {
     };
   };
 export default connect(mapStateToProps)(Pengaturanstaff);
+
+
+               
 
 
 

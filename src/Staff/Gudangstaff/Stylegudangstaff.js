@@ -140,5 +140,38 @@ export const styles = StyleSheet.create({
         fontSize:13,
         fontWeight:'bold',
         color:'#fff'
-    }
+    },
+    containermodal: {
+        width: '100%',
+        height: 690,
+        // backgroundColor:'red',
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      viewmodal: {
+        width: '80%',
+        height: 250,
+        backgroundColor: '#fff',
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      txttanya: {
+        fontSize: 18,
+        fontWeight: 'bold',
+      },
+      viewtanya: {
+        width: '80%',
+        height: 30,
+        marginTop: '10%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+      },
+      txt: {
+        fontSize:15,
+        fontWeight:'bold'
+      },
 })

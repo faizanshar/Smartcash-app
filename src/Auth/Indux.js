@@ -22,11 +22,13 @@ import Profilestaff from '../Staff/profilestaff/Profilestaff'
 // Staff-Kategoristaff-Kategoristaff
 import Kategoristaff from '../Staff/Kategoristaff/Kategoristaff'
 
-// Staff-Pengaturanstaff-Pengaturanstaff
-import Perusahaanstaff from '../Staff/Perusahaanstaff/Perusahaanstaff'
-
 // Staff-Perusahaanstaff
+import Perusahaanstaff from '../Staff/Perusahaanstaff/Perusahaanstaff'
 import Tambahperusahaan from '../Staff/Perusahaanstaff/Tambahperusahaan'
+import Ubahperusahaanstaff from '../Staff/Perusahaanstaff/Ubahperusahaanstaff'
+
+// Staff-Riwayatpembelian
+import Riwayatstaff from '../Staff/Riwayatpembelian/Riwayatstaff'
 
 // Staff-Passwordstaff
 import Passwordstaff from '../Staff/Passwordstaff/Passwordstaff'
@@ -75,11 +77,14 @@ const Indux = () => {
         <Stack.Screen name="Profilestaff" component={Profilestaff} />
         <Stack.Screen name="Kategoristaff" component={Kategoristaff} />
         <Stack.Screen name="Perusahaanstaff" component={Perusahaanstaff}/>
+        <Stack.Screen name="Ubahperusahaanstaff" component={Ubahperusahaanstaff}/>
         <Stack.Screen name="Tambahperusahaan" component={Tambahperusahaan}/>
         <Stack.Screen name="Passwordstaff" component={Passwordstaff}/>
         <Stack.Screen name="Tambahbarang" component={Tambahbarang}/>
         <Stack.Screen name="Gudangstaff" component={Gudangstaff}/>
         <Stack.Screen name="Ubahdatastaff" component={Ubahdatastaff}/>
+        <Stack.Screen name="Riwayatstaff" component={Riwayatstaff}/>
+
 
 
 

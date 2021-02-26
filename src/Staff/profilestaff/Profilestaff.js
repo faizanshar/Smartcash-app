@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StatusBar, Text, TouchableOpacity, View, Image, TouchableOpacityBase, TextInput } from 'react-native'
+import { StatusBar, Text, TouchableOpacity, View, Image, TouchableOpacityBase, TextInput, ToastAndroid } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import {styles} from './Styleprofilestaff'
 import {connect} from 'react-redux';
@@ -10,7 +10,7 @@ class Profilestaff extends Component {
         this.state = {
             nama:'',
             alamat:'',
-            method:'put',
+            method:'patch',
             telpon:'',
             email:''
         }
@@ -35,7 +35,7 @@ class Profilestaff extends Component {
         const formData = new FormData();
     
         formData.append('name', nama);
-        formData.append('alamat', alamat);
+        formData.append('address', alamat);
         formData.append('_method', method);
         // if (this.state.uri !== '' || this.state.fileName !== '') {
         //   formData.append('foto', {
@@ -47,9 +47,10 @@ class Profilestaff extends Component {
     
         console.log('Ini data From Data', formData);
         this.setState({loading: true});
-        fetch('https://nsj-trash.herokuapp.com/api/editprofil', {
+        fetch('https://smartcash2.herokuapp.com/api/profile/update', {
           method: 'POST',
           headers: {
+            Accept:'application/json',
             Authorization: `Bearer ${this.props.userToken.userReducer.token}`,
           },
           body: formData,
@@ -97,7 +98,7 @@ class Profilestaff extends Component {
                         <View style = {styles.viewicon}>
                             <Image source = {require('../../Assets/Grayprofile.png')} style = {styles.imgprofile}/>
                         </View>
-                        <TextInput placeholder = {' nama'} style = {styles.inputemail} multiline = {true} value = {this.state.nama}/>
+                        <TextInput placeholder = {' nama'} style = {styles.inputemail} multiline = {true} value = {this.state.nama} onChangeText = {(input)=>this.setState({nama:input})}/>
                     </View>
 
                     <View style = {styles.viewemail}>
@@ -118,10 +119,10 @@ class Profilestaff extends Component {
                         <View style = {styles.viewicon}>
                             <Image source = {require('../../Assets/graylokasi.png')} style = {styles.imgprofile}/>
                         </View>
-                        <TextInput placeholder = {' alamat'} style = {styles.inputemail} multiline = {true} value = {this.state.alamat}/>
+                        <TextInput placeholder = {' alamat'} style = {styles.inputemail} multiline = {true} value = {this.state.alamat} onChangeText = {(input)=>this.setState({alamat:input})}/>
                     </View>
 
-                    <TouchableOpacity style = {styles.touchedit}>
+                    <TouchableOpacity style = {styles.touchedit} onPress = {()=>this.editProfile()}>
                         <Text style = {styles.txtedit}>Edit</Text>
                     </TouchableOpacity>
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Image, TouchableOpacity, ScrollView } from 'react-native'
+import { Text, View, Image, TouchableOpacity, ScrollView, Modal, ToastAndroid } from 'react-native'
 import {styles} from './Stylegudangstaff'
 import AsyncStorage from '@react-native-community/async-storage';
 import {connect} from 'react-redux';
@@ -11,7 +11,10 @@ class Gudangstaff extends Component {
         super(props);
         this.state = {
             data : [],
-            hapus:''
+            hapus:'',
+            modalVisible:false,
+            hapus:'',
+            method:'delete'
         }
     }
 
@@ -27,7 +30,7 @@ class Gudangstaff extends Component {
             }
           })
           .catch((err) => console.log(err));
-        console.log('ini TOKEN', this.props.userToken.userReducer.token);
+        console.log('ini TOKENKUUOI', this.props.userToken.userReducer.token);
       }
     
       getBarang() {
@@ -63,40 +66,44 @@ class Gudangstaff extends Component {
             console.log(err);
           });
       }
-      hapusBarang = () => {
-          console.log('Menghapus');
-          console.log('ini ID',this.state.data);
-          this.setState({hapus:index})
-              this.setState({loading: true});
-              fetch(`https://smartcash2.herokuapp.com/api/barang/delete/${this.state.data[this.state.hapus].id}`, {
-                method: 'POST',
-                headers: {
-                  // 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-                  Authorization: `Bearer ${this.props.userToken.userReducer.token}`,
-                },
-                // body: formData,
-              })
-                .then((response) => response.json())
-                .then((response) => {
-                //   const {token, error} = response;
-          
-                  this.props.userLogin(token);
-          
-                  console.log('ini response', response);
-                  if (response.status == 'success') {
-                    ToastAndroid.show('Berhasil Menghapus', 1000);
-                    this.props.navigation.navigate('Drawer1')
-                    this.setState({loading: false});
-                  }
-                })
-                .catch((error) => {
-                  console.log(error);
-                  this.setState({loading: false});
-                  ToastAndroid.show('Gagal Menghapus', 1000);
-                });
-            };
+      hapusBarang = (id) => {
+        console.log('mulai Mengirim');
     
-        
+        const {method} = this.state;
+        const formData = new FormData();
+    
+        formData.append('_method', method);
+        // formData.append('password', password2);
+    
+        this.setState({loading: true});
+        fetch(`https://smartcash2.herokuapp.com/api/barang/delete/${id}`, {
+          method: 'POST',
+          headers: {
+            // 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            Authorization: `Bearer ${this.props.userToken.userReducer.token}`,
+          },
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((response) => {
+            // const {token, error} = response;
+    
+            // this.props.userLogin(token);
+    
+            console.log('ini response', response);
+            if (response.status == 'success') {
+              ToastAndroid.show('Berhasil Menghapus', 1000);
+              this.props.navigation.navigate('Drawer1')
+              this.setState({loading: false});
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            this.setState({loading: false});
+            ToastAndroid.show('Email Atau Password Salah', 1000);
+          });
+      };
+      
     render() {
         return (
             <View style = {styles.container}>
@@ -123,11 +130,16 @@ class Gudangstaff extends Component {
                                     <Text style = {styles.txtbrand}>{item.brand}</Text>
                                 </View>
                                 <View style = {styles.viewharga}>
-                                    <Text style = {styles.txthargadiskon}>Rp.{item.price}</Text>
+                                    {item.discount == 0 ? (
+                                      <Text style = {styles.txthargadiskon}>Rp.0-,</Text>
+                                    ) : (
+                                      <Text style = {styles.txthargadiskon}>Rp.{item.price}</Text>
+                                    )}
                                     <Text style = {styles.txtharga}>Rp.{item.price - item.discount / 100 * item.price}-,</Text>
                                 </View>
+
                                 <View style = {styles.viewtouch}>
-                                    <TouchableOpacity style = {styles.touchhapus} onPress = {()=>this.hapusBarang({hapus:index})}>
+                                    <TouchableOpacity style = {styles.touchhapus} onPress={() => {this.hapusBarang(item.id)}}>
                                         <Text style = {styles.txthapus}>Hapus</Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity style = {styles.touchupdate} onPress = {()=>this.props.navigation.navigate("Ubahdatastaff",{item:item})}>
@@ -152,3 +164,6 @@ const mapStateToProps = (state) => {
     };
   };
 export default connect(mapStateToProps)(Gudangstaff);
+                              
+
+

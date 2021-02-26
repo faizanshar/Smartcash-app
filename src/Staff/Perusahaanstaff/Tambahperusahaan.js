@@ -31,7 +31,7 @@ class Tambahperusahaan extends Component {
       }
     
       
-      Login = () => {
+      tambahPerusahaan = () => {
         console.log('mulai Mengirim');
     
         const {name,phone_number,address} = this.state;
@@ -53,31 +53,22 @@ class Tambahperusahaan extends Component {
         })
           .then((response) => response.json())
           .then((response) => {
-            const {token, error} = response;
+            // const {token, error} = response;
     
-            this.props.userLogin(token);
+            // this.props.userLogin(token);
     
             console.log('ini response', response);
-            if (response.user.roles[0].pivot.role_id == 3) {
-              ToastAndroid.show('Berhasil Masuk', 1000);
-              AsyncStorage.setItem('token', token);
-              // AsyncStorage.setItem('role', response.user.role.toString());
-    
-              this.props.navigation.replace('Drawer1');
-              // AsyncStorage.setItem('token', token);
-              // this.props.userLogin(token);
-    
-              this.setState({loading: false});
-            }else if (response.user.roles[0].pivot.role_id == 4){
-              ToastAndroid.show('Berhasil masuk',1000);
-              AsyncStorage.setItem('token',token);
-              this.props.navigation.navigate('Drawer2')
+            if (response.status == 'success') {
+             ToastAndroid.show('Berhasil menambah!',1000)
+             this.props.navigation.replace('Drawer1')
+            }else if(response.errors.name == 'The name field is required.'){
+              ToastAndroid.show('Nama perusahaan kosong!')
             }
           })
           .catch((error) => {
             console.log(error);
             this.setState({loading: false});
-            ToastAndroid.show('Email Atau Password Salah', 1000);
+            ToastAndroid.show('Error', 1000);
           });
       };
       
@@ -95,10 +86,10 @@ class Tambahperusahaan extends Component {
                         <Text style = {styles.txtperusahaan}>Tambah perusahaan</Text>
                     </View>
                         
-                    <TextInput placeholder = {' nama'} style = {styles.inputnama}/>
-                    <TextInput placeholder = {' telpon'} style = {styles.inputtelpon}/>   
-                    <TextInput placeholder = {' alamat'} style = {styles.inputalamat} multiline = {true}/>   
-                    <TouchableOpacity style = {styles.touchadd}>
+                    <TextInput placeholder = {' nama'} style = {styles.inputnama} onChangeText = {(name) => this.setState({name})}/>
+                    <TextInput placeholder = {' telpon'} style = {styles.inputtelpon} onChangeText = {(phone_number) => this.setState({phone_number})}/>   
+                    <TextInput placeholder = {' alamat'} style = {styles.inputalamat} multiline = {true} onChangeText = {(address) => this.setState({address})}/>   
+                    <TouchableOpacity style = {styles.touchadd} onPress = {() => this.tambahPerusahaan()}>
                         <Text style = {styles.txtadd}>Tambah</Text>
                     </TouchableOpacity>
 

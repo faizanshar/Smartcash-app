@@ -40,94 +40,40 @@ class Screenstaff extends Component {
                                 <Image source = {require('../Assets/Whiteplus.png')} style = {styles.imgplus}/>
                             </TouchableOpacity> */}
                         </View>
-                        <View style = {styles.header2}>
+                        {/* <View style = {styles.header2}>
                             <TouchableOpacity style = {styles.viewsearch}>
                                 <Text style = {styles.txtsearch}>Search</Text>
                                 <View style = {styles.viewtouchsearch}>
                                     <Image source = {require('../Assets/blacksearch.png')} style = {styles.imgsearch}/>
                                 </View>
                             </TouchableOpacity>
-                    </View>
+                    </View> */}
                     </View>
 
             <ScrollView>
-                    <TouchableOpacity style = {styles.viewdata}>
-                        <View style = {styles.viewbarang}>
-                            <View style = {styles.viewnamabarang}>
-                                <Text style = {styles.txtnamabarang}>Indomie Goreng sedap 200</Text>
-                            </View>
-                            <View style = {styles.viewdiskon}>
-                                <Text style = {styles.txtdiskon}>20%</Text>
-                            </View>
-                        </View>
-                        <View style = {styles.viewharga}>
-                            <Text style = {styles.txthargaasli}>Rp.100000,-</Text>
-                            <Text style = {styles.txthargadiskon}>Rp.80000,-</Text>
-                        </View>
-                        <View style = {styles.viewstock}>
-                            <Text style = {styles.txtstock}>Stock: 10</Text>
-                        </View>
-                        <View style = {styles.viewtouch}>
-                            <TouchableOpacity style = {styles.touchhapus}>
-                                <Text style = {styles.txthapus}>Hapus</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style = {styles.touchupdate}>
-                                <Text style = {styles.txtupdate}>update</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </TouchableOpacity>
+                   <View style = {styles.view1}>
+                       <TouchableOpacity style = {styles.touchalldata} onPress = {()=>this.props.navigation.navigate('Gudangstaff')}>
+                           <Image source = {require('../Assets/Grayware.png')} style = {styles.imgdataall}/>
+                           <Text style = {styles.txtdataall}>Gudang</Text>
+                       </TouchableOpacity>
+                       <TouchableOpacity style = {styles.touchalldata} onPress = {() => this.props.navigation.navigate('Riwayatstaff')}>
+                           <Image source = {require('../Assets/blackhistory.png')} style = {styles.imgdataall3}/>
+                           <Text style = {styles.txtdataall2}>Riwayat pembelian</Text>
+                       </TouchableOpacity>
+                   </View>
+                   <View style = {styles.view2}>
+                       <TouchableOpacity style = {styles.touchalldata} onPress = {()=>this.props.navigation.navigate("Perusahaanstaff")}>
+                          <Image source = {require('../Assets/Blackcompany.png')} style = {styles.imgdataall2}/>
+                          <Text style = {styles.txtdataall2}>Perusahaan</Text>
+                       </TouchableOpacity>
+                       <TouchableOpacity style = {styles.touchalldata} onPress = {()=>this.props.navigation.navigate("Kategoristaff")}>
+                           <Image source = {require('../Assets/graykategori.png')} style = {styles.imgdataall2}/>
+                           <Text style = {styles.txtdataall2}>kategori</Text>
+                       </TouchableOpacity>
+                   </View>
 
-                    <TouchableOpacity style = {styles.viewdata}>
-                        <View style = {styles.viewbarang}>
-                            <View style = {styles.viewnamabarang}>
-                                <Text style = {styles.txtnamabarang}>Indomie Goreng sedap 200</Text>
-                            </View>
-                            <View style = {styles.viewdiskon}>
-                                <Text style = {styles.txtdiskon}>20%</Text>
-                            </View>
-                        </View>
-                        <View style = {styles.viewharga}>
-                            <Text style = {styles.txthargaasli}>Rp.100000,-</Text>
-                            <Text style = {styles.txthargadiskon}>Rp.80000,-</Text>
-                        </View>
-                        <View style = {styles.viewstock}>
-                            <Text style = {styles.txtstock}>Stock: 10</Text>
-                        </View>
-                        <View style = {styles.viewtouch}>
-                            <TouchableOpacity style = {styles.touchhapus}>
-                                <Text style = {styles.txthapus}>Hapus</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style = {styles.touchupdate}>
-                                <Text style = {styles.txtupdate}>update</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </TouchableOpacity>
 
-                    <TouchableOpacity style = {styles.viewdata}>
-                        <View style = {styles.viewbarang}>
-                            <View style = {styles.viewnamabarang}>
-                                <Text style = {styles.txtnamabarang}>Indomie Goreng sedap 200</Text>
-                            </View>
-                            <View style = {styles.viewdiskon}>
-                                <Text style = {styles.txtdiskon}>20%</Text>
-                            </View>
-                        </View>
-                        <View style = {styles.viewharga}>
-                            <Text style = {styles.txthargaasli}>Rp.100000,-</Text>
-                            <Text style = {styles.txthargadiskon}>Rp.80000,-</Text>
-                        </View>
-                        <View style = {styles.viewstock}>
-                            <Text style = {styles.txtstock}>Stock: 10</Text>
-                        </View>
-                        <View style = {styles.viewtouch}>
-                            <TouchableOpacity style = {styles.touchhapus}>
-                                <Text style = {styles.txthapus}>Hapus</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style = {styles.touchupdate}>
-                                <Text style = {styles.txtupdate}>update</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </TouchableOpacity>
+
                     <View style = {{width:'100%',height:70}}></View>
             </ScrollView>
 

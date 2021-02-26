@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Image, Text, View,TouchableOpacity } from 'react-native'
+import { Image, Text, View,TouchableOpacity, RefreshControl } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import {styles} from './Styledrawerstaff'
 import AsyncStorage from '@react-native-community/async-storage';
@@ -9,7 +9,8 @@ class Drawerstaff extends Component {
     constructor(props){
         super(props);
         this.state = {
-            data: {}
+            data: {},
+            refresh:false
         }
     }
     componentDidMount() {
@@ -45,7 +46,7 @@ class Drawerstaff extends Component {
             if (responseJson.status == 'success') {
               this.setState({
                 data: responseJson.data,
-                // refresh: false,
+                refresh: false,
                 // loading: false,
               });
             //   this.setState({data2: responseJson, loading: false});
@@ -60,15 +61,22 @@ class Drawerstaff extends Component {
             console.log(err);
           });
       }
-
-      perusahaanStaf (){
-         this.props.navigation.navigate('Perusahaanstaff')
-         this.props.navigation.closeDrawer() 
+      onRefreshControl() {
+        this.setState({refresh: true});
+        this.getStaff();
       }
+
+      
     render() {
         return (
             <View style = {styles.container}>
-                <ScrollView>
+                <ScrollView
+                refreshControl={
+                    <RefreshControl
+                    refreshing={this.state.refresh}
+                    onRefresh={() => this.onRefreshControl()}
+                    />
+                }>
                     <View style = {styles.viewprofil}>
                         <View style = {styles.viewfoto}>
                             <Image 
@@ -94,36 +102,6 @@ class Drawerstaff extends Component {
                         </View>
                     </TouchableOpacity>
                     
-                    <TouchableOpacity style = {styles.touch2} onPress = {()=>this.props.navigation.navigate("Kategoristaff")}>
-                        <View style = {styles.viewicon}>
-                            <Image source = {require('../Assets/graykategori.png')} style = {styles.imgprofile}/>
-                        </View>
-                        <View style = {styles.view}>
-                            <Text style = {styles.txticonname}>kategori</Text>
-                            {/* <Image source = {require('../Assets/Whitearrow.png')} style = {styles.imgarrow}/> */}
-                        </View>
-                    </TouchableOpacity>
-                    
-                    <TouchableOpacity style = {styles.touch2} onPress = {()=>this.perusahaanStaf()}>
-                        <View style = {styles.viewicon}>
-                            <Image source = {require('../Assets/Grayperusahaan.png')} style = {styles.imgprofile}/>
-                        </View>
-                        <View style = {styles.view}>
-                            <Text style = {styles.txticonname}>perusahaan</Text>
-                            {/* <Image source = {require('../Assets/Whitearrow.png')} style = {styles.imgarrow}/> */}
-                        </View>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style = {styles.touch2} onPress = {()=>this.props.navigation.navigate('Gudangstaff')}>
-                        <View style = {styles.viewicon}>
-                            <Image source = {require('../Assets/Grayware.png')} style = {styles.imgprofile}/>
-                        </View>
-                        <View style = {styles.view}>
-                            <Text style = {styles.txticonname}>gudang</Text>
-                            {/* <Image source = {require('../Assets/Whitearrow.png')} style = {styles.imgarrow}/> */}
-                        </View>
-                    </TouchableOpacity>
-
                     <TouchableOpacity style = {styles.touch2} onPress = {()=>this.props.navigation.navigate("Passwordstaff")}>
                         <View style = {styles.viewicon}>
                             <Image source = {require('../Assets/graykey.png')} style = {styles.imgprofile}/>

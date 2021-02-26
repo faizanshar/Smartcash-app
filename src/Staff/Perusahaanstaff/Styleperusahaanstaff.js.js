@@ -155,5 +155,16 @@ export const styles = StyleSheet.create({
         fontSize:13,
         fontWeight:'bold',
         color:'#fff'
+    },
+    containermodal: {
+        flex:1,
+        // backgroundColor:'red',
+        alignItems:'center',
+        justifyContent:'center'
+    },
+    viewmodal: {
+        width:'70%',
+        height:200,
+        backgroundColor:'#000'
     }
 })

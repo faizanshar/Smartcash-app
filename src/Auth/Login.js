@@ -92,7 +92,10 @@ class Login extends Component {
               style={styles.input}
               keyboardType={'email-address'}
               onChangeText={(email) => this.setState({email})}
+              autoCapitalize = {'none'}
             />
+
+
             <Image
               source={require('../Assets/blackemail.png')}
               style={styles.imgemail}
@@ -104,6 +107,7 @@ class Login extends Component {
               style={styles.input}
               secureTextEntry={this.state.password}
               onChangeText={(password2) => this.setState({password2})}
+              autoCapitalize = {'none'}
             />
             <TouchableOpacity
               style={styles.touchpassword}

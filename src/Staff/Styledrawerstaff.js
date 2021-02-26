@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
         width:'100%',
         // backgroundColor:'yellow',
         height:80,
-        marginTop:10,
+        marginTop:30,
         flexDirection:'row',
         // alignItems:'center',
         justifyContent:'center'
@@ -49,7 +49,8 @@ export const styles = StyleSheet.create({
         height:60,
         // backgroundColor:'red',
         // justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        marginTop:10
         // marginLeft:10
     },
     txtemail: {

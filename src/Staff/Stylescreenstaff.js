@@ -11,6 +11,8 @@ export const styles = StyleSheet.create({
     height: 120,
     backgroundColor: 'gray',
     elevation: 10,
+    borderBottomLeftRadius:50,
+    borderBottomRightRadius:50
   },
   header1: {
     width: '100%',
@@ -83,127 +85,68 @@ export const styles = StyleSheet.create({
       width:'43%',
       height:25
   },
-  viewdata: {
-    width: '100%',
-    height: 200,
-    backgroundColor: '#fff',
-    marginTop: 30,
-    elevation: 10,
-  },
-  viewbarang: {
-    width: '100%',
-    height: 50,
+  view1: {
+    width:'100%',
+    height:150,
     // backgroundColor:'red',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row',
+    marginTop:80,
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:"space-around"
   },
-  viewnamabarang: {
-    width: '80%',
-    height: 50,
-    // backgroundColor:'yellow',
-    justifyContent: 'center',
+  view2: {
+    width:'100%',
+    height:150,
+    // backgroundColor:'red',
+    marginTop:30,
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:"space-around"
   },
-  txtnamabarang: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginLeft: 10,
+  touchalldata: {
+    width:'40%',
+    height:130,
+    backgroundColor:'#fff',
+    elevation:10,
+    borderRadius:20,
+    alignItems:'center'
   },
-  viewdiskon: {
-    width: '18%',
-    height: 50,
-    backgroundColor: 'yellow',
-    borderBottomLeftRadius: 40,
-    borderBottomRightRadius: 40,
-    elevation: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
+  imgdataall: {
+    width:'30%',
+    height:60,
+    marginTop:25
   },
-  txtdiskon: {
-    fontSize: 17,
-    fontWeight: 'bold',
-    color: 'red',
+  imgdataall2: {
+    width:'25%',
+    height:35,
+    marginTop:25
   },
-  viewharga: {
-    width: '100%',
-    height: 50,
-    // backgroundColor:'green',
-    justifyContent: 'center',
+  imgdataall3: {
+    width:'30%',
+    height:40,
+    marginTop:30
   },
-  txthargaasli: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: 'gray',
-    marginLeft: 15,
-    textDecorationLine: 'line-through',
-    // textDecorationStyle:'solid'
+  txtdataall: {
+    fontSize:15,
+    fontWeight:'bold',
+    color:"#000"
   },
-  txthargadiskon: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: 'green',
-    marginLeft: 15,
-  },
-  viewstock: {
-    width: '100%',
-    height: 40,
-    // backgroundColor:'yellow',
-    justifyContent: 'center',
-    // alignItems:'center'
-  },
-  txtstock: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    marginLeft: 15,
-  },
-  viewtouch: {
-    width: '100%',
-    height: 60,
-    // backgroundColor:'yellow',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-  },
-  touchhapus: {
-    width: '20%',
-    height: 40,
-    backgroundColor: 'red',
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    elevation: 8,
-    marginRight: 10,
-  },
-  txthapus: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: '#fff',
-  },
-  touchupdate: {
-    width: '22%',
-    height: 40,
-    backgroundColor: '#c4ffc4',
-    borderRadius: 10,
-    elevation: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 10,
-  },
-  txtupdate: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: '#000',
+  txtdataall2: {
+    fontSize:15,
+    fontWeight:'bold',
+    color:'#000',
+    marginTop:15
   },
   viewmendata: {
     width:'100%',
-    height:60,
+    height:70,
     backgroundColor:'gray',
     alignItems:'center',
     justifyContent:'center',
     borderTopRightRadius:50,
     borderTopLeftRadius:50,
     position:'absolute',
-    top:630
+    top:620
     // flexDirection:'row'
   },
   touchmendata: {
