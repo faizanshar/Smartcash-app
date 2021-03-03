@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
     },
     touchdata: {
         width:'100%',
-        minHeight:200,
+        minHeight:250,
         backgroundColor:'#fff',
         marginTop:30,
         elevation:10
@@ -105,5 +105,41 @@ export const styles = StyleSheet.create({
         fontSize:15,
         fontWeight:'bold',
         marginLeft:15,
+    },
+    viewtouch: {
+        width:'100%',
+        height:40,
+        // backgroundColor:'red',
+        alignItems:'flex-end',
+        // flexDirection:'row',
+        // justifyContent:'space-around',
+    },
+    touchhapus: {
+        width:'20%',
+        height:40,
+        backgroundColor:'red',
+        marginRight:20,
+        borderRadius:10,
+        alignItems:'center',
+        justifyContent:'center',
+    },
+    txthapus: {
+        fontSize:13,
+        fontWeight:'bold',
+        color:'#fff'
+    },
+    viewwaktu: {
+        width:'30%',
+        height:40,
+        backgroundColor:'yellow',
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-evenly'
+    },
+    txtdate: {
+        marginRight:5
+    },
+    txtyear: {
+        marginLeft:5
     }
 })

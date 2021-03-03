@@ -161,5 +161,60 @@ export const styles = StyleSheet.create({
   imgmendata: {
     width:'80%',
     height:40
+  },
+  containermodal: {
+    flex:1,
+    backgroundColor:'rgba(0,0,0,0.5)',
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  viewmodal: {
+    width:'70%',
+    height:250,
+    backgroundColor:'#fff',
+    elevation:8,
+    borderRadius:20,
+    // justifyContent:'center'
+  },
+  viewpicker: {
+    width:'80%',
+    height:50,
+    backgroundColor:'#fff',
+    elevation:8,
+    alignSelf:'center',
+    marginTop:50,
+    borderRadius:20
+  },
+  viewtouch: {
+    width:'100%',
+    height:50,
+    // backgroundColor:'yellow',
+    marginTop:50,
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'space-around'
+  },
+  touchbatal: {
+    width:'40%',
+    height:50,
+    backgroundColor:'red',
+    borderRadius:20,
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  touchkirim: {
+    width:'40%',
+    height:50,
+    borderRadius:20,
+    alignItems:'center',
+    justifyContent:'center',
+    // alignSelf:'center',
+    // marginTop:40,
+    backgroundColor:'gray'
+  },
+  txt: {
+    fontSize:13,
+    fontWeight:'bold',
+    color:'#fff'
   }
 });

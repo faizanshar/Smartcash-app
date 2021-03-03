@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage'
 import {connect} from 'react-redux'
-
+import LottieView from 'lottie-react-native';
 
 class Login extends Component {
   constructor(props) {
@@ -19,7 +19,8 @@ class Login extends Component {
     this.state = {
       password: true,
       email:'',
-      password2:''
+      password2:'',
+      loading: false
     };
   }
   componentDidMount() {
@@ -61,17 +62,16 @@ class Login extends Component {
         if (response.user.roles[0].pivot.role_id == 3) {
           ToastAndroid.show('Berhasil Masuk', 1000);
           AsyncStorage.setItem('token', token);
-          // AsyncStorage.setItem('role', response.user.role.toString());
-
           this.props.navigation.replace('Drawer1');
-          // AsyncStorage.setItem('token', token);
-          // this.props.userLogin(token);
-
           this.setState({loading: false});
+
+
         }else if (response.user.roles[0].pivot.role_id == 4){
           ToastAndroid.show('Berhasil masuk',1000);
           AsyncStorage.setItem('token',token);
           this.props.navigation.navigate('Drawer2')
+          this.setState({loading: false});
+
         }
       })
       .catch((error) => {
@@ -125,7 +125,17 @@ class Login extends Component {
           <TouchableOpacity
             style={styles.touchmasuk}
             onPress={() => this.Login()}>
-            <Text style={styles.txtmasuk}>Masuk</Text>
+            {this.state.loading == false ? (
+              <Text style={styles.txtmasuk}>Masuk</Text>
+            ) : (
+              <LottieView
+                source={require('../Assets/6541-loading.json')}
+                autoPlay={true}
+                style={styles.imgloading}
+              />
+            )}
+
+
           </TouchableOpacity>
           <TouchableOpacity>
             <Text style={styles.txtforgot}>Forgot Password ?</Text>
@@ -150,7 +160,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#ebffeb',
+    backgroundColor: '#fff',
     // justifyContent:'center'
   },
   txtwelcome: {
@@ -218,7 +228,7 @@ const styles = StyleSheet.create({
   touchmasuk: {
     width: '80%',
     height: 50,
-    backgroundColor: 'gray',
+    backgroundColor: '#696969',
     alignSelf: 'center',
     borderRadius: 20,
     marginTop: 20,
@@ -236,4 +246,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     alignSelf: 'center',
   },
+  imgloading: {
+    width:'30%',
+    height:60
+  }
 });

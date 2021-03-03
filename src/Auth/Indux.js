@@ -9,7 +9,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 // Auth Splash
 import Splash from './Splash';
 
-// Auth Login
+// Auth Loginas
 import Login from './Login';
 
 // Staff
@@ -29,6 +29,7 @@ import Ubahperusahaanstaff from '../Staff/Perusahaanstaff/Ubahperusahaanstaff'
 
 // Staff-Riwayatpembelian
 import Riwayatstaff from '../Staff/Riwayatpembelian/Riwayatstaff'
+import Detailriwayatstaff from '../Staff/Riwayatpembelian/Detailriwayatstaff'
 
 // Staff-Passwordstaff
 import Passwordstaff from '../Staff/Passwordstaff/Passwordstaff'
@@ -42,7 +43,6 @@ import Ubahdatastaff from '../Staff/Gudangstaff/Ubahdatastaff'
 
 // Kasir
 import Screenkasir from '../Kasir/Screenkasir'
-import Drawerkasir from '../Kasir/Drawerkasir'
 
 
 
@@ -57,13 +57,13 @@ const Drawer1 = () => {
   );
 };
 
-const Drawer2 = () => {
-  return (
-    <Drawer.Navigator drawerContent={(props) => <Drawerkasir {...props}/>}> 
-      <Drawer.Screen name={'Screenkasir'} component={Screenkasir} />
-    </Drawer.Navigator>
-  );
-};
+// const Drawer2 = () => {
+//   return (
+//     <Drawer.Navigator drawerContent={(props) => <Drawerkasir {...props}/>}> 
+//       <Drawer.Screen name={'Screenkasir'} component={Screenkasir} />
+//     </Drawer.Navigator>
+//   );
+// };
 
 const Indux = () => {
   return (
@@ -72,7 +72,7 @@ const Indux = () => {
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Drawer1" component={Drawer1 } />
-        <Stack.Screen name="Drawer2" component={Drawer2 } />
+        <Stack.Screen name="Drawer2" component={Screenkasir } />
         
         <Stack.Screen name="Profilestaff" component={Profilestaff} />
         <Stack.Screen name="Kategoristaff" component={Kategoristaff} />
@@ -84,6 +84,8 @@ const Indux = () => {
         <Stack.Screen name="Gudangstaff" component={Gudangstaff}/>
         <Stack.Screen name="Ubahdatastaff" component={Ubahdatastaff}/>
         <Stack.Screen name="Riwayatstaff" component={Riwayatstaff}/>
+        <Stack.Screen name="Detailriwayatstaff" component={Detailriwayatstaff}/>
+
 
 
 
