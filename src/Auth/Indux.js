@@ -36,6 +36,7 @@ import Passwordstaff from '../Staff/Passwordstaff/Passwordstaff'
 
 // Staff-Tambahbarang
 import Tambahbarang from '../Staff/Tambahbarang/Tambahbarang'
+import Barang from '../Staff/Tambahbarang/Barang'
 
 // Staff-Gudangstaff
 import Gudangstaff from '../Staff/Gudangstaff/Gudangstaff'
@@ -43,8 +44,17 @@ import Ubahdatastaff from '../Staff/Gudangstaff/Ubahdatastaff'
 
 // Kasir
 import Screenkasir from '../Kasir/Screenkasir'
+// import Drawerkasir from '../Kasir/Drawerkasir'
 
+// Kasir-Profilekasir
+import Profilekasir from '../Kasir/Profilekasir/Profilekasir'
+import Fotokasir from '../Kasir/Profilekasir/Fotokasir'
 
+// Kasir-Kasir
+import Kasir from '../Kasir/Kasir/Kasir'
+
+// Kasir-Member
+import Member from '../Kasir/Member/Member'
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -72,7 +82,7 @@ const Indux = () => {
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Drawer1" component={Drawer1 } />
-        <Stack.Screen name="Drawer2" component={Screenkasir } />
+        <Stack.Screen name="Drawer2" component={Screenkasir} />
         
         <Stack.Screen name="Profilestaff" component={Profilestaff} />
         <Stack.Screen name="Kategoristaff" component={Kategoristaff} />
@@ -85,6 +95,13 @@ const Indux = () => {
         <Stack.Screen name="Ubahdatastaff" component={Ubahdatastaff}/>
         <Stack.Screen name="Riwayatstaff" component={Riwayatstaff}/>
         <Stack.Screen name="Detailriwayatstaff" component={Detailriwayatstaff}/>
+        <Stack.Screen name="Barang" component={Barang}/>
+
+
+        <Stack.Screen name="Profilekasir" component={Profilekasir}/>
+        <Stack.Screen name="Fotokasir" component={Fotokasir}/>
+        <Stack.Screen name="Kasir" component={Kasir}/>
+        <Stack.Screen name="Member" component={Member}/>
 
 
 

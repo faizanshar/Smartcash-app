@@ -30,6 +30,18 @@ export const styles = StyleSheet.create({
     width: '30%',
     height: 25,
   },
+  touchbarang: {
+    width:'20%',
+    height:60,
+    // backgroundColor:'red',
+    left:120,
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  imgplus2: {
+    width:'35%',
+    height:25
+  },
   txttambah: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -333,8 +345,8 @@ export const styles = StyleSheet.create({
     height:25
   },
   viewmodal2: {
-    width: '70%',
-    height: 200,
+    width: '80%',
+    height: 230,
     backgroundColor: '#fff',
     borderRadius: 20,
     elevation: 10,
@@ -348,5 +360,130 @@ export const styles = StyleSheet.create({
     marginTop:20,
     borderRadius:20,
     elevation:8
+  },
+  touchselesai: {
+    width:'80%',
+    height:50,
+    backgroundColor:'#696969',
+    alignSelf:'center',
+    borderRadius:20,
+    marginTop:30,
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  txtbayar: {
+    fontSize:15,
+    fontWeight:'bold',
+    color:'#fff'
+  },
+  viewbayar: {
+    width:'80%',
+    height:250,
+    backgroundColor:'#fff',
+    borderRadius:10,
+    elevation:8,
+    alignItems:'center'
+  },
+  viewperusahaan: {
+    width:'80%',
+    height:50,
+    backgroundColor:"#ffff",
+    // elevation:8,
+    marginTop:30,
+    borderWidth:1,
+    borderRadius:10
+  },
+  viewdibayar: {
+    width:'80%',
+    height:50,
+    backgroundColor:'#fff',
+    marginTop:20,
+    borderWidth:1,
+    borderRadius:10,
+    flexDirection:'row',
+    alignItems:'center'
+  },
+  viewrp: {
+    width:'15%',
+    height:50,
+    borderTopLeftRadius:10,
+    borderBottomLeftRadius:10,
+    // backgroundColor:'yellow',
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  inputbayar: {
+    width:'85%',
+    height:50,
+    // backgroundColor:'red',
+    borderTopRightRadius:10,
+    borderBottomRightRadius:10
+  },
+  viewtouch3: {
+    width:'100%',
+    height:50,
+    // backgroundColor:'yellow',
+    marginTop:25,
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'space-around'
+  },
+  touchbatal2: {
+    width:'40%',
+    height:50,
+    backgroundColor:'red',
+    borderRadius:20,
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  touchkirim: {
+    width:'40%',
+    height:50,
+    backgroundColor:'#696969',
+    borderRadius:20,
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  imgwait: {
+    width:'80%',
+    height:200,
+    alignSelf:'center'
+  },
+  txtwait: {
+    fontSize:15,
+    fontWeight:'bold',
+    alignSelf:'center'
+  },
+  viewmodal3: {
+    width:'80%',
+    height:450,
+    backgroundColor:'#fff',
+    elevation:8,
+    borderRadius:10,
+    alignItems:'center',
+  },
+  imgsukses: {
+    width:'90%',
+    height:100
+  },
+  viewtxt: {
+    width:'100%',
+    height:50,
+    flexDirection:'row',
+    alignItems:'center',
+    // backgroundColor:'yellow',
+    marginTop:50,
+    justifyContent:'space-between'
+    
+  },
+  viewtxt2: {
+    width:'100%',
+    height:50,
+    flexDirection:'row',
+    alignItems:'center',
+    // backgroundColor:'yellow',
+    marginTop:10,
+    justifyContent:'space-between'
+    
   }
 });

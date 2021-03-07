@@ -141,5 +141,15 @@ export const styles = StyleSheet.create({
     },
     txtyear: {
         marginLeft:5
-    }
+    },
+    imgwait: {
+        width:'80%',
+        height:200,
+        alignSelf:'center'
+      },
+      txtwait: {
+        fontSize:15,
+        fontWeight:'bold',
+        alignSelf:'center'
+      }
 })
