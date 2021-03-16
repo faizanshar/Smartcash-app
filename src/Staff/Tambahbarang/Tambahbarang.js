@@ -46,6 +46,7 @@ class Tambahbarang extends Component {
       modalVisible5: false,
       data3: {},
       data4: {},
+      total:{}
     };
   }
 
@@ -248,6 +249,7 @@ class Tambahbarang extends Component {
           this.setState({
             data: responseJson.data,
             refresh: false,
+            total:responseJson.total
             // loading: false,
           });
         } else {
@@ -446,6 +448,14 @@ class Tambahbarang extends Component {
                   </View>
                 );
               })}
+              <View style = {styles.containerdata}>
+                <View style = {{width:"53%",height:50,borderRightWidth:1,alignItems:"center",justifyContent:"center"}}>
+                  <Text style = {{fontSize:15,fontWeight:'bold'}}>Total</Text>
+                </View>
+                <View style = {{width:'47%',height:50,borderRightWidth:1,alignItems:'center',justifyContent:'center'}}>
+                  <Text style = {{fontSize:15,fontWeight:'bold',color:'green'}}>Rp.{this.state.total}-,</Text>
+                </View>
+              </View>
 
               <TouchableOpacity
                 style={styles.touchselesai}

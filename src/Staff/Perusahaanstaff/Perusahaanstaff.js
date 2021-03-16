@@ -113,7 +113,7 @@ class Pengaturanstaff extends Component {
       .catch((error) => {
         console.log(error);
         this.setState({loading: false});
-        ToastAndroid.show('Email Atau Password Salah', 1000);
+        ToastAndroid.show('Gagal Menghapus', 1000);
       });
   };
 

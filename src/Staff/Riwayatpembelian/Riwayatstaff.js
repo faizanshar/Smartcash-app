@@ -7,6 +7,7 @@ import {
   ScrollView,
   TouchableOpacityBase,
   RefreshControl,
+  ToastAndroid
 } from 'react-native';
 import {styles} from './Styleriwayatstaff';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -39,6 +40,8 @@ class Riwayatstaff extends Component {
       All: '',
       loading: false,
       refresh: false,
+      method:'delete',
+      loading2:false
     };
   }
   ShowCurrentDate = () => {
@@ -125,6 +128,47 @@ class Riwayatstaff extends Component {
         this.setState({loading: false, refresh: false});
       });
   }
+
+  hapusRiwayat = (id) => {
+    console.log('mulai Mengirim');
+
+    const {method} = this.state;
+    const formData = new FormData();
+
+    formData.append('_method', method);
+    // formData.append('password', password2);
+
+    this.setState({loading2: true});
+    fetch(
+      `https://smartcash2.herokuapp.com/api/pembelian/riwayat/delete/${id}`,
+      {
+        method: 'POST',
+        headers: {
+          // 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+          Authorization: `Bearer ${this.props.userToken.userReducer.token}`,
+        },
+        body: formData,
+      },
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        // const {token, error} = response;
+
+        // this.props.userLogin(token);
+
+        console.log('ini response', response);
+        if (response.status == 'success') {
+          ToastAndroid.show('Berhasil Menghapus', 1000);
+          this.setState({loading2: false});
+          this.props.navigation.navigate("Drawer1")
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        this.setState({loading2: false});
+        ToastAndroid.show('Error!', 1000);
+      });
+  };
   render() {
     return (
       <View style={styles.container}>
@@ -218,7 +262,7 @@ class Riwayatstaff extends Component {
 
                       <View style={styles.viewtouch}>
                         {item.created_at == this.getMonth() ? (
-                          <TouchableOpacity style={styles.touchhapus}>
+                          <TouchableOpacity style={styles.touchhapus} onPress = {() => this.hapusRiwayat(item.id)}>
                             <Text style={styles.txthapus}>Hapus</Text>
                           </TouchableOpacity>
                         ) : (

@@ -7,33 +7,35 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
-  ToastAndroid
+  ToastAndroid,
 } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage'
-import {connect} from 'react-redux'
+import AsyncStorage from '@react-native-community/async-storage';
+import {connect} from 'react-redux';
 import LottieView from 'lottie-react-native';
+import CheckBox from '@react-native-community/checkbox';
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       password: true,
-      email:'',
-      password2:'',
-      loading: false
+      email: '',
+      password2: '',
+      loading: false,
+      check:false
     };
   }
-  componentDidMount() {
-    AsyncStorage.getItem('token')
-      .then((value) => {
-        if (value !== null) {
-          this.setState({token: value});
-        } else {
-          this.props.navigation.navigate('Login');
-        }
-      })
-      .catch((err) => console.log(err));
-  }
+  // componentDidMount() {
+  //   AsyncStorage.getItem('token')
+  //     .then((value) => {
+  //       if (value !== null) {
+  //         this.setState({token: value});
+  //       } else {
+  //         this.props.navigation.navigate('Login');
+  //       }
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
   Login = () => {
     console.log('mulai Mengirim');
 
@@ -54,27 +56,48 @@ class Login extends Component {
     })
       .then((response) => response.json())
       .then((response) => {
+        console.log('ini RESPONN',response);
+        console.log('ini ROLE',response.user.roles[0].pivot.role_id);
         const {token, error} = response;
-
+        const {role_id} = response.user.roles[0].pivot
+        const token_user = ['token',token]
+        const role_user = ['role',JSON.stringify(role_id)]
+        this.state.check
+        ? AsyncStorage.multiSet([token_user, role_user]).catch((err) =>
+        console.log(err),
+        )
+        : AsyncStorage.setItem('token', token).catch((err) =>
+        console.log(err),
+        );
         this.props.userLogin(token);
+        // const {role} = response.user.roles[0].pivot.role_id
+        // this.state.check ? 
+        // AsyncStorage.multiSet(['token',token,'role',JSON.stringify(role)]).catch((error) => console.log(error)) :
+        // AsyncStorage.setItem('token',token).catch((error) => console.log(error))
 
-        console.log('ini response', response);
+        // console.log('ini response', response);
         if (response.user.roles[0].pivot.role_id == 3) {
           ToastAndroid.show('Berhasil Masuk', 1000);
-          AsyncStorage.setItem('token', token);
+          
           this.props.navigation.replace('Drawer1');
           this.setState({loading: false});
-
-
-        }else if (response.user.roles[0].pivot.role_id == 4){
-          ToastAndroid.show('Berhasil masuk',1000);
-          AsyncStorage.setItem('token',token);
-          this.props.navigation.navigate('Drawer2')
+        } else if (response.user.roles[0].pivot.role_id == 4) {
+          ToastAndroid.show('Berhasil masuk', 1000);
+          // AsyncStorage.setItem('token', token);
+          this.props.navigation.navigate('Drawer2');
           this.setState({loading: false});
-
+        } else if (response.user.roles[0].pivot.role_id == 5) {
+          ToastAndroid.show('Berhasil masuk', 1000);
+          // AsyncStorage.setItem('token', token);
+          this.props.navigation.navigate('Screenmember');
+          this.setState({loading: false});
+        } else if (response.user.roles[0].pivot.role_id == 2) {
+          ToastAndroid.show('Berhasil masuk', 1000);
+          // AsyncStorage.setItem('token', token);
+          this.props.navigation.navigate('Screenpimpinan');
+          this.setState({loading: false});
         }
-      })
-      .catch((error) => {
+      }).catch((error) => {
         console.log(error);
         this.setState({loading: false});
         ToastAndroid.show('Email Atau Password Salah', 1000);
@@ -92,9 +115,8 @@ class Login extends Component {
               style={styles.input}
               keyboardType={'email-address'}
               onChangeText={(email) => this.setState({email})}
-              autoCapitalize = {'none'}
+              autoCapitalize={'none'}
             />
-
 
             <Image
               source={require('../Assets/blackemail.png')}
@@ -107,7 +129,7 @@ class Login extends Component {
               style={styles.input}
               secureTextEntry={this.state.password}
               onChangeText={(password2) => this.setState({password2})}
-              autoCapitalize = {'none'}
+              autoCapitalize={'none'}
             />
             <TouchableOpacity
               style={styles.touchpassword}
@@ -122,6 +144,15 @@ class Login extends Component {
               />
             </TouchableOpacity>
           </View>
+          <View style = {styles.viewbox}>
+
+            <CheckBox
+              // disabled={false}
+              value={this.state.check}
+              onValueChange={() => this.setState({check:!this.state.check})}
+            />
+            <Text style = {{fontSize:14,fontWeight:'bold'}}>Remember me</Text>
+          </View>
           <TouchableOpacity
             style={styles.touchmasuk}
             onPress={() => this.Login()}>
@@ -134,7 +165,6 @@ class Login extends Component {
                 style={styles.imgloading}
               />
             )}
-
 
           </TouchableOpacity>
           <TouchableOpacity>
@@ -152,9 +182,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(null, mapDispatchToProps)(Login);
-
-
-
 
 const styles = StyleSheet.create({
   container: {
@@ -175,6 +202,14 @@ const styles = StyleSheet.create({
     height: 160,
     marginTop: 60,
     alignSelf: 'center',
+  },
+  viewbox: {
+    width:'75%',
+    height:50,
+    // backgroundColor:'red',
+    flexDirection:'row',
+    alignItems:'center',
+    alignSelf:'center'
   },
   view1: {
     width: '80%',
@@ -247,7 +282,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   imgloading: {
-    width:'30%',
-    height:60
-  }
+    width: '30%',
+    height: 60,
+  },
 });

@@ -7,8 +7,8 @@ const defaultstate = {
     switch (action.type) {
       case 'TOKEN_USER':
         return {login: true, token: action.payload};
-    //   case 'TOKEN_SPLASH':
-    //     return {...state,...action.payload}
+      case 'TOKEN_SPLASH':
+        return {...state,...action.payload}
       default:
         return state;
     }

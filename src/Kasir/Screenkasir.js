@@ -7,6 +7,9 @@ import {
   ScrollView,
   StatusBar,
   RefreshControl,
+  ToastAndroid,
+  Modal,
+  TextInput
 } from 'react-native';
 import {styles} from './Stylescreenkasir';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -20,6 +23,7 @@ class Screenkasir extends Component {
       data: {},
       refresh: false,
       loading: false,
+      modalVisible: false,
     };
   }
   onRefreshControl() {
@@ -42,7 +46,29 @@ class Screenkasir extends Component {
       .catch((err) => console.log(err));
     console.log('ini TOKEN', this.props.userToken.userReducer.token);
   }
+  logOut() {
+    console.log('Keluar');
 
+    fetch('https://smartcash2.herokuapp.com/api/logout', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${this.props.userToken.userReducer.token}`,
+      },
+      // body: formData,
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log('ini response', response);
+        if (response) {
+          ToastAndroid.show('Behasil Keluar', 1000);
+          this.props.navigation.replace('Login');
+          AsyncStorage.multiRemove(['token', 'role']);
+        } else {
+          alert('Gagal Keluar');
+        }
+      })
+      .catch((error) => console.log('Error', error));
+  }
   getProfile() {
     this.setState({loading: true});
     fetch('https://smartcash2.herokuapp.com/api/profile', {
@@ -60,7 +86,7 @@ class Screenkasir extends Component {
         console.log('ini Dia', responseJson);
         if (responseJson) {
           this.setState({
-            data: responseJson.user,
+            data: responseJson.data,
             refresh: false,
             loading: false,
           });
@@ -136,8 +162,37 @@ class Screenkasir extends Component {
                 </View>
               </View>
             </View>
+            <View
+              style={{
+                width: '100%',
+                height: 50,
+                backgroundColor: '#696969',
+                alignItems: 'flex-end',
+                justifyContent: 'center',
+              }}>
+              <TouchableOpacity
+                onPress = {() => this.setState({modalVisible:true})}
+                style={{
+                  width: '25%',
+                  height: 45,
+                  backgroundColor: '#fff',
+                  marginRight: 15,
+                  borderRadius: 20,
+                  bottom: 15,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Text style={{fontSize: 14, fontWeight: 'bold'}}>Check in</Text>
+              </TouchableOpacity>
+            </View>
 
-            <TouchableOpacity style={styles.touch1} onPress = {() => this.props.navigation.navigate("Profilekasir",{item:this.state.data})}>
+            <TouchableOpacity
+              style={styles.touch1}
+              onPress={() =>
+                this.props.navigation.navigate('Profilekasir', {
+                  item: this.state.data,
+                })
+              }>
               <Image
                 source={require('../Assets/profile2.png')}
                 style={styles.imgprofile}
@@ -152,7 +207,9 @@ class Screenkasir extends Component {
                 </TouchableOpacity>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.touch2} onPress = {() => this.props.navigation.navigate("Kasir")}>
+            <TouchableOpacity
+              style={styles.touch2}
+              onPress={() => this.props.navigation.navigate('Kasir')}>
               <Image
                 source={require('../Assets/other.png')}
                 style={styles.imgprofile}
@@ -167,7 +224,9 @@ class Screenkasir extends Component {
                 </TouchableOpacity>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.touch2}>
+            <TouchableOpacity
+              style={styles.touch2}
+              onPress={() => this.props.navigation.navigate('Riwayatkasir')}>
               <Image
                 source={require('../Assets/blackhistory.png')}
                 style={styles.imgprofile}
@@ -182,7 +241,9 @@ class Screenkasir extends Component {
                 </TouchableOpacity>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.touch2} onPress = {() => this.props.navigation.navigate("Member")}>
+            <TouchableOpacity
+              style={styles.touch2}
+              onPress={() => this.props.navigation.navigate('Member')}>
               <Image
                 source={require('../Assets/Member.png')}
                 style={styles.imgprofile}
@@ -197,7 +258,9 @@ class Screenkasir extends Component {
                 </TouchableOpacity>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.touch2}>
+            <TouchableOpacity
+              style={styles.touch2}
+              onPress={() => this.logOut()}>
               <Image
                 source={require('../Assets/login.png')}
                 style={styles.imgprofile}
@@ -216,6 +279,26 @@ class Screenkasir extends Component {
             <View style={{width: '100%', height: 40}}></View>
           </ScrollView>
         )}
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={this.state.modalVisible}>
+          <View style={styles.containermodal}>
+            <View style={styles.viewmodal}>
+              <TextInput placeholder={' Kode'} style={styles.inputkode} />
+              <View style={styles.viewtouch}>
+                <TouchableOpacity
+                  style={styles.touchbatal}
+                  onPress={() => this.setState({modalVisible: false})}>
+                  <Text style={styles.txtemail}>Batal</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.touchkirim}>
+                  <Text style={styles.txtemail}>Check in</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Modal>
         <View style={styles.viewtambah}></View>
       </View>
     );

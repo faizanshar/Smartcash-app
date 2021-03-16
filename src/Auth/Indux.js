@@ -18,6 +18,7 @@ import Drawerstaff from '../Staff/Drawerstaff';
 
 // Staff-Profilestaff-Profilestaff
 import Profilestaff from '../Staff/profilestaff/Profilestaff' 
+import Fotostaff from '../Staff/profilestaff/Fotostaff'
 
 // Staff-Kategoristaff-Kategoristaff
 import Kategoristaff from '../Staff/Kategoristaff/Kategoristaff'
@@ -56,6 +57,54 @@ import Kasir from '../Kasir/Kasir/Kasir'
 // Kasir-Member
 import Member from '../Kasir/Member/Member'
 
+// Kasir-Riwayatkasir
+import Riwayatkasir from '../Kasir/Riwayatkasir/Riwayatkasir'
+import Detailriwayat from '../Kasir/Riwayatkasir/Detailriwayat'
+
+
+// Member
+import Screenmember from '../Member/Screenmember'
+import Profilemember from '../Member/Profilemember'
+import Fotomember from '../Member/Fotomember'
+
+// Pimpinan
+import Screenpimpinan from '../Pimpinan/Screenpimpinan'
+
+// Pimpinan-Profile
+import Profilepimpinan from '../Pimpinan/Profilepimpinan/Profilepimpinan'
+import Fotopimpinan from '../Pimpinan/Profilepimpinan/Fotopimpinan'
+
+// Pimpinan-Gudangpimpinan
+import Gudangpimpinan from '../Pimpinan/Gudangpimpinan/Gudangpimpinan'
+
+// Pimpinan-Riwayatpembelianpimpinan
+import Riwayapembelianpimpinan from '../Pimpinan/Riwayatpembelianpimpinan/Riwayapembelianpimpinan'
+import Detailriwayatpembelianpimpinan from '../Pimpinan/Riwayatpembelianpimpinan/Detailriwayatpembelianpimpinan'
+
+// Pimpinan-Perusahaanpimpinan
+import Perusahaanpimpinan from '../Pimpinan/Perusahaanpimpinan/Perusahaanpimpinan'
+
+
+// Pimpinan-Riwayattransaksipimpinan
+import Riwayattransaksipimpinan from '../Pimpinan/Riwayattransaksipimpinan/Riwayattransaksipimpinan'
+import Detailriwayattransaksipimpinan from '../Pimpinan/Riwayattransaksipimpinan/Detailriwayattransaksipimpinan'
+
+// Pimpinan-Keuangan
+import Keuanganpimpinan from '../Pimpinan/Keuangan/Keuanganpimpinan'
+
+// Pimpinan-Member
+import Memberpimpinan from '../Pimpinan/Member/Memberpimpinan'
+
+// Pimpinan-Laba
+import Laba from '../Pimpinan/Laba/Laba'
+
+// Pimpinan-Karyawan
+import Karyawan from '../Pimpinan/Karyawan/Karyawan'
+import Tambahkaryawan from '../Pimpinan/Karyawan/Tambahkaryawan'
+
+// Pimpinan-Absen
+import Absen from '../Pimpinan/Absen/Absen'
+
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -83,6 +132,10 @@ const Indux = () => {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Drawer1" component={Drawer1 } />
         <Stack.Screen name="Drawer2" component={Screenkasir} />
+        <Stack.Screen name="Screenmember" component={Screenmember} />
+        <Stack.Screen name="Screenpimpinan" component={Screenpimpinan} />
+
+
         
         <Stack.Screen name="Profilestaff" component={Profilestaff} />
         <Stack.Screen name="Kategoristaff" component={Kategoristaff} />
@@ -96,19 +149,39 @@ const Indux = () => {
         <Stack.Screen name="Riwayatstaff" component={Riwayatstaff}/>
         <Stack.Screen name="Detailriwayatstaff" component={Detailriwayatstaff}/>
         <Stack.Screen name="Barang" component={Barang}/>
+        <Stack.Screen name="Fotostaff" component={Fotostaff}/>
+
 
 
         <Stack.Screen name="Profilekasir" component={Profilekasir}/>
         <Stack.Screen name="Fotokasir" component={Fotokasir}/>
         <Stack.Screen name="Kasir" component={Kasir}/>
         <Stack.Screen name="Member" component={Member}/>
+        <Stack.Screen name="Riwayatkasir" component={Riwayatkasir}/>
+        <Stack.Screen name="Detailriwayatkasir" component={Detailriwayat}/>
+
+
+        <Stack.Screen name="Profilemember" component={Profilemember}/>
+        <Stack.Screen name="Fotomember" component={Fotomember}/>
+
+        <Stack.Screen name="Profilepimpinan" component={Profilepimpinan}/>
+        <Stack.Screen name="Fotopimpinan" component={Fotopimpinan}/>
+        <Stack.Screen name="Gudangpimpinan" component={Gudangpimpinan}/>
+        <Stack.Screen name="Riwayatpembelianpimpinan" component={Riwayapembelianpimpinan}/>
+        <Stack.Screen name="Detailriwayatpembelianpimpinan" component={Detailriwayatpembelianpimpinan}/>
+        <Stack.Screen name="Perusahaanpimpinan" component={Perusahaanpimpinan}/>
+        <Stack.Screen name="Riwayattransaksipimpinan" component={Riwayattransaksipimpinan}/>
+        <Stack.Screen name="Detailriwayattransaksipimpinan" component={Detailriwayattransaksipimpinan}/>
+        <Stack.Screen name="Keuanganpimpinan" component={Keuanganpimpinan}/>
+        <Stack.Screen name="Memberpimpinan" component={Memberpimpinan}/>
+        <Stack.Screen name="Laba" component={Laba}/>
+        <Stack.Screen name="Karyawan" component={Karyawan}/>
+        <Stack.Screen name="Tambahkaryawan" component={Tambahkaryawan}/>
+        <Stack.Screen name="Absen" component={Absen}/>
 
 
 
 
-
-
-        
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -116,3 +189,16 @@ const Indux = () => {
 
 
 export default Indux;
+
+
+
+
+
+
+
+
+
+
+
+
+        

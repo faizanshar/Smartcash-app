@@ -66,6 +66,71 @@ export const styles = StyleSheet.create({
         color:'#fff',
         // marginLeft:10
     },
+    touchabsen: {
+        width:'40%',
+        height:40,
+        backgroundColor:'#fff',
+        alignSelf:'center',
+        marginRight:18,
+        alignItems:'center',
+        justifyContent:'center',
+        borderRadius:20,
+        marginTop:10
+    },
+    txtabsen: {
+        fontSize:14,
+        fontWeight:'bold'
+    },
+    containermodal: {
+        flex:1,
+        backgroundColor:'rgba(0,0,0,0.5)',
+        alignItems:'center',
+        justifyContent:"center"
+    },
+    viewmodal: {
+        width:'80%',
+        height:200,
+        backgroundColor:"#fff",
+        borderRadius:20
+    },
+    inputkode: {
+        width:'80%',
+        minHeight:50,
+        backgroundColor:'#fff',
+        borderWidth:1,
+        borderRadius:20,
+        alignSelf:'center',
+        marginTop:30
+    },
+    viewtouch: {
+        width:'100%',
+        height:50,
+        marginTop:40,
+        // backgroundColor:'red',
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-around'
+    },
+    touchkirim: {
+        width:'40%',
+        height:50,
+        backgroundColor:'#696969',
+        alignSelf:'center',
+        alignItems:'center',
+        justifyContent:"center",
+        // marginTop:40,
+        borderRadius:30
+    },
+    touchbatal: {
+        width:'40%',
+        height:50,
+        backgroundColor:'red',
+        alignSelf:'center',
+        alignItems:'center',
+        justifyContent:"center",
+        // marginTop:40,
+        borderRadius:30
+    },
     touch: {
         width:'100%',
         height:60,

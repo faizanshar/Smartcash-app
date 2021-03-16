@@ -40,9 +40,52 @@ export const styles = StyleSheet.create({
         fontWeight:'bold',
         elevation:5
     },
+    viewpassword: {
+        width:'80%',
+        height:50,
+        backgroundColor:'#fff',
+        borderWidth:1,
+        borderRadius:20,
+        flexDirection:'row',
+        alignItems:'center',
+        alignSelf:'center',
+        marginTop:20
+    },
+    inputpassword: {
+        width:'80%',
+        height:50,
+        // backgroundColor:'red',
+        borderTopLeftRadius:20,
+        borderBottomLeftRadius:20,
+        fontWeight:'bold'
+    },
+    imgpassword: {
+        width:'60%',
+        height:30
+    },
+    touchpassword: {
+        width:'20%',
+        height:50,
+        borderTopRightRadius:20,
+        borderBottomRightRadius:20,
+        alignItems:'center',
+        justifyContent:'center',
+        // backgroundColor:'yellow'
+    },
     input2: {
         width:'80%',
         height:50,
+        backgroundColor:'#fff',
+        borderWidth:1,
+        borderRadius:20,
+        alignSelf:'center',
+        marginTop:20,
+        fontWeight:'bold',
+        elevation:5
+    },
+    input3: {
+        width:'80%',
+        minHeight:50,
         backgroundColor:'#fff',
         borderWidth:1,
         borderRadius:20,

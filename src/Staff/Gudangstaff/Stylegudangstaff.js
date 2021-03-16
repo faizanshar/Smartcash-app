@@ -174,4 +174,14 @@ export const styles = StyleSheet.create({
         fontSize:15,
         fontWeight:'bold'
       },
+      imgwait: {
+        width:'80%',
+        height:200,
+        alignSelf:'center'
+      },
+      txtwait: {
+        fontSize:15,
+        fontWeight:'bold',
+        alignSelf:'center'
+      },
 })
